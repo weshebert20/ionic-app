@@ -1,16 +1,66 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Wes App</ion-title>
+    <ion-title>Movie Search</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Wes is awesome</h2>
+<!-- <ion-content padding> -->
+<!--   <h2>Spacey Things</h2>
   <p>
-    Not really sure what to do for project 4. Supes confused
+    But who is in space RN
   </p>
-  <img src="http://food.thecookbk.com/wp-content/uploads/2017/04/puppy-1.jpg" alt="">
+  <img src="https://cdn.spacetelescope.org/archives/images/wallpaper2/heic1509a.jpg" alt="">
+  <div *ngFor='let person of people'>
+  <p>{{people.person}}</p>
+  </div>
+  
+  
   <p>
     Someone <code>hire</code> me
   </p>
-</ion-content>
+
+  
+
+</ion-content> -->
+<!-- 
+</ion-header> -->
+ 
+<ion-content padding>
+    <ion-item>
+        <ion-label color="primary" stacked>Search movie database</ion-label>
+        <ion-input type="text" (input)="searchForMovie($event, searchKey)"></ion-input>
+    </ion-item>
+ 
+    <ion-list>    
+        <ion-item *ngFor="let movie of movies" (click)="selectMovie($event, movie)">
+            <ion-avatar item-left>
+                <img src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}"/>
+            </ion-avatar>
+            <h2>{{movie.original_title}}</h2>
+            <p class="item-description">{{movie.overview}}</p>
+        </ion-item>
+    </ion-list>
+    <ion-content class="home" padding>
+    <div *ngIf="movie" class="selection">
+        <ion-card>
+            <ion-item>
+                <ion-avatar item-left image-large>
+                    <img src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}"/>
+                </ion-avatar>
+                <h1>{{movie.title}}</h1>
+                <p>{{movie.release_date}}</p>
+            </ion-item>
+ 
+            <ion-item>
+                <ion-icon name="document" item-left></ion-icon>
+                <h2>Overview</h2>
+                <p class="item-description">{{movie.overview}}</p>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="bookmark" item-left></ion-icon>
+                <h2>Average Vote</h2>
+                <p>{{movie.vote_average}}</p>
+            </ion-item>
+        </ion-card>
+    </div>
+</ion-content> 
